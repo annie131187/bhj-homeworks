@@ -4,6 +4,7 @@ const countDown = function () {
         timer.textContent -= 1;
     } else {
         alert('Вы победили в конкурсе!');
+        clearInterval(finish);
     }
 }
-setInterval(countDown, 1000);
+const finish = setInterval(countDown, 1000);
