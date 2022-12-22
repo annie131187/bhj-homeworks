@@ -19,8 +19,6 @@ class Game {
   registerEvents() {
     document.addEventListener('keypress', (event) => {
       const keyName = event.key;
-      console.log(keyName);
-      console.log(this.currentSymbol.textContent);
       if (keyName == this.currentSymbol.textContent) {
         this.success();
       } else if (keyName != this.currentSymbol.textContent) {
