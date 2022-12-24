@@ -1,14 +1,14 @@
 const blocks = document.querySelectorAll('.reveal');
 
 const isVisible = function (elem) {
-    const { top, bottom } = elem.getBoundingClientRect();
-    if (bottom < 0) {
+    const { innerHeight } = window;
+    const { top } = elem.getBoundingClientRect();
+    if (top < innerHeight && top > 0) {
+        return true;  
+    } else {
         return false;
     }
-    if (top > window.innerHeight) {
-        return false;
-    }
-    return true;  
+    
 }
 
 const showVisible = function () {
