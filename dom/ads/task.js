@@ -1,9 +1,12 @@
 const rotator = document.querySelector('.rotator');
 const rotators = Array.from(document.querySelectorAll('.rotator__case'));
+let timeoutDelay = 0;
 
-function rotate() {
+let timeoutId = setTimeout(function rotate() {
     item = rotators[rotators.findIndex(item => item.classList.contains('rotator__case_active'))];
     item.style.color = item.dataset.color;
+    let delay = item.dataset.speed;
+    timeoutDelay = delay;
     if (item.nextElementSibling !== null) {
         item.classList.remove('rotator__case_active');
         item.nextElementSibling.classList.add('rotator__case_active');
@@ -12,5 +15,5 @@ function rotate() {
         item.classList.remove('rotator__case_active');
         item = rotator.firstElementChild.classList.add('rotator__case_active');
     }
-}
-setInterval(rotate, 1000);
+    timeoutId = setTimeout(rotate, timeoutDelay);
+}, timeoutDelay);
