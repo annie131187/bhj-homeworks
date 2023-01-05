@@ -1,3 +1,10 @@
-const subList = document.querySelectorAll('.interests_active');
-console.log(subList.children);
+const checkboxes = [...document.querySelectorAll('.interest__check')];
+
+checkboxes.forEach(item => {
+    item.addEventListener('change', () => {
+        if (item.closest('.interests_active') === null) {
+            //?????????????????
+        }
+    });
+});
 

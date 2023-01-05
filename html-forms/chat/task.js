@@ -6,6 +6,10 @@ const messagesList = ['Добрый день!', 'Чем могу вам помо
 
 widget.addEventListener('click', () => {
     widget.classList.add('chat-widget_active');
+    const timer = setTimeout(addBotMsg, 5000);
+    if (addClientMsg()) {
+        clearTimeout(timer);
+    }
 });
 
 document.addEventListener('keydown', (evt) => {
@@ -14,7 +18,7 @@ document.addEventListener('keydown', (evt) => {
     }
 });
 
-function addMsg() {
+function addClientMsg() {
     document.addEventListener('keyup', (evt) => {
         if (evt.code === 'Enter' && input.value !== '') {
                 messages.innerHTML += `
@@ -29,27 +33,14 @@ function addMsg() {
             `;
 
             input.value = '';
-
-            messages.innerHTML += `
-                <div class="message">
-                    <div class="message__time">
-                        ${new Date().toLocaleTimeString()}
-                    </div>
-                    <div class="message__text">
-                        ${messagesList[Math.floor(Math.random() * messagesList.length)]}
-                    </div>
-                </div>
-            `;
-            container.scrollTo(0, container.scrollHeight);
+            addBotMsg();
         }
     });
+    container.scrollTo(0, container.scrollHeight);
 }
 
-addMsg();
-
-let timer = setTimeout(() => {
-    if (widget.classList.contains('chat-widget_active') && !addMsg()) {
-        messages.innerHTML += `
+function addBotMsg() {
+    messages.innerHTML += `
         <div class="message">
             <div class="message__time">
                 ${new Date().toLocaleTimeString()}
@@ -59,7 +50,5 @@ let timer = setTimeout(() => {
             </div>
         </div>
     `;
-    } else {
-        clearTimeout(timer);
-    }
-}, 10000);
+    container.scrollTo(0, container.scrollHeight);
+}
