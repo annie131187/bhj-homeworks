@@ -8,22 +8,20 @@ tasksForm.addEventListener('submit', (evt) => {
     if (input.value.trim() == '') {
         input.value = '';
         return;
-    } else {
-        tasksList.insertAdjacentHTML("afterbegin", `
-            <div class="task">
-                <div class="task__title">
-                ${input.value.trim()}
-                </div>
-                <a href="#" class="task__remove">&times;</a>
-            </div>
-        `);
-        input.value = '';
     }
+
+    tasksList.insertAdjacentHTML("afterbegin", `
+        <div class="task">
+            <div class="task__title">
+            ${input.value.trim()}
+            </div>
+            <a href="#" class="task__remove">&times;</a>
+        </div>
+    `);
+    input.value = '';
     
-    let current_tasks = document.querySelectorAll('.task__remove');
-    for (let i = 0; i < current_tasks.length; i++) {
-        current_tasks[i].onclick = function () {
-            this.parentNode.remove(); 
-        }
+    let currentTasks = document.querySelectorAll('.task__remove');
+    currentTasks[0].onclick = function () {
+        this.parentNode.remove();
     }
 });
