@@ -1,12 +1,10 @@
 const editor = document.getElementById('editor');
 
-if(localStorage.getItem('text')) {
-    editor.value = localStorage.getItem('text');
-} else {
-    editor.addEventListener('input', () => {
-        localStorage.setItem('text', editor.value);
-    });
-};
+editor.addEventListener('input', () => {
+    localStorage.setItem('text', editor.value);
+});
+
+editor.value = localStorage.getItem('text');
 
 let resetButton = document.createElement('button');
 resetButton.textContent = "Очистить содержимое";

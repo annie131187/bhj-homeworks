@@ -21,6 +21,7 @@ signForm.addEventListener('submit', evt => {
     xhr.onload = () => {
         if (xhr.response.success == true) {
             localStorage.setItem('id', xhr.response.user_id);
+            signForm.reset();
             userSign.classList.remove('signin_active');
             userWelcome.classList.add('welcome_active');
             userId.textContent = xhr.response.user_id;
